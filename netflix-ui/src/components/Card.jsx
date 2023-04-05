@@ -19,17 +19,6 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
     } else navigate("/login");
   });
 
-  // const addToList = async () => {
-  //   try {
-  //     await axios.post("http://localhost:5000/api/user/add", {
-  //       email,
-  //       data: movieData,
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   return (
     <Container
       onMouseEnter={() => setIsHovered(true)}
@@ -68,22 +57,10 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
                   onClick={() => navigate("/player")}
                 />
                 <RiThumbUpFill title="Like" />
-                <RiThumbDownFill title="Dislike" />
-                {/* {isLiked ? (
-                  <BsCheck
-                    title="Remove from List"
-                    onClick={() =>
-                      dispatch(
-                        removeMovieFromLiked({ movieId: movieData.id, email })
-                      )
-                    }
-                  />
-                ) : (
-                  <AiOutlinePlus title="Add to my list" onClick={addToList} />
-                )} */}
+                <RiThumbDownFill title="Dislike"/>
               </div>
               <div className="info">
-                <BiChevronDown title="More Info" />
+                <BiChevronDown title="More Info" onClick={() => navigate("/infoMovie")}/>
               </div>
             </div>
             <div className="genres flex">
