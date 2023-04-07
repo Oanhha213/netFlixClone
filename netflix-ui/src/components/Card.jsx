@@ -4,20 +4,20 @@ import styled from "styled-components";
 import { IoPlayCircleSharp } from "react-icons/io5";
 import { RiThumbUpFill, RiThumbDownFill } from "react-icons/ri";
 import { BiChevronDown } from "react-icons/bi";
-import { onAuthStateChanged } from "firebase/auth";
-import { firebaseAuth } from "../utils/firebase-config";
+//import { onAuthStateChanged } from "firebase/auth";
+//import { firebaseAuth } from "../utils/firebase-config";
 import video from "../assets/video.mp4";
 
 export default React.memo(function Card({ index, movieData, isLiked = false }) {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
-  const [setEmail] = useState(undefined);
+  //const [setEmail] = useState(undefined);
 
-  onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (currentUser) {
-      setEmail(currentUser.email);
-    } else navigate("/login");
-  });
+  // onAuthStateChanged(firebaseAuth, (currentUser) => {
+  //   if (currentUser) {
+  //     setEmail(currentUser.email);
+  //   } else navigate("/login");
+  // });
 
   return (
     <Container
@@ -60,7 +60,7 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
                 <RiThumbDownFill title="Dislike"/>
               </div>
               <div className="info">
-                <BiChevronDown title="More Info" onClick={() => navigate("/infoMovie")}/>
+                <BiChevronDown title="More Info" />
               </div>
             </div>
             <div className="genres flex">
