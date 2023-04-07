@@ -5,6 +5,7 @@ import BackgroundImage from "../components/BackgroundImage";
 import Header from "../components/Header";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "../utils/firebase-config";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -19,9 +20,30 @@ function Login() {
     }
   };
 
+  const handleGoogleLogin = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(firebaseAuth, provider);
+    } catch (error) {
+      console.log(error.code);
+    }
+  };
+
+  // const handleFacebookLogin = async () => {
+  //   const provider = new FacebookAuthProvider();
+  //   try {
+  //     await signInWithPopup(firebaseAuth, provider);
+  //   } catch (error) {
+  //     console.log(error.code);
+  //   }
+  // };
+
   onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (currentUser) navigate("/");
+    if (currentUser) {
+      navigate("/");
+    }
   });
+  
 
   return (
     <Container>
@@ -47,6 +69,7 @@ function Login() {
                 value={password}
               />
               <button onClick={handleLogin}>Login to your account</button>
+              <button onClick={handleGoogleLogin}>Login with Google</button>
             </div>
           </div>
         </div>

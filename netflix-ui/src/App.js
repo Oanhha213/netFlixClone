@@ -6,7 +6,7 @@ import Netflix from "./pages/Netflix";
 import Player from "./pages/Player";
 import Signup from "./pages/Signup";
 import TVShows from "./pages/TVShows";
-import InfoMovie from "./pages/InfoMovie";
+//import InfoMovie from "./pages/InfoMovie";
 
 export default function App() {
   return (
@@ -15,7 +15,6 @@ export default function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/player" element={<Player />} />
-        <Route exact path="/infoMovie" element={<InfoMovie />} />
         <Route exact path="/tv" element={<TVShows />} />
         <Route exact path="/movies" element={<MoviePage />} />
         <Route exact path="/new" element={<Player />} />
