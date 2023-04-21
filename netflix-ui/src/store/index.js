@@ -77,28 +77,18 @@ export const fetchMovies = createAsyncThunk(
   }
 );
 
-// export const getMovieDetails = createAsyncThunk(
-//   "netflix/movieDetails",
-//   async (movieId) => {
-//     const { data } = await axios.get(
-//       `${TMDB_BASE_URL}/movie/${movieId}?api_key=${API_KEY}&append_to_response=videos`
-//     );
-//     return data;
-//   }
-// );
+
+// export const fetchMovieDetails = async (movieId) => {
+//   const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}`, {
+//     params: {
+//       api_key: API_KEY,
+//       language: 'en-US'
+//     }
+//   });
+//   return response.data;
+// }
 
 
-// export const fetchMovieDetails = createAsyncThunk(
-//   "Netflix/movieDetails",
-//   async (movieId) => {
-//     const { data } = await axios.get(`${TMDB_BASE_URL}/movie/${movieId}`, {
-//       params: {
-//         api_key: API_KEY,
-//       },
-//     });
-//     return data;
-//   }
-// );
 
 const NetflixSlice = createSlice({
   name: "Netflix",
