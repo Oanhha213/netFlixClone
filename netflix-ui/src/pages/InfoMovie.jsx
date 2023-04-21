@@ -5,18 +5,21 @@ import { useNavigate, useParams } from "react-router-dom";
 import { BsArrowLeft } from "react-icons/bs";
 import styled from "styled-components";
 
-export default function InfoMovie() {
-  const { movieId } = useParams();
+export default function InfoMovie({movieId}) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const movieDetails = useSelector((state) => state.Netflix.movieDetails);
-  const { title, director, actors, videoUrl, posterUrl } = movieDetails || {};
+  const { title, poster_path, videos, crew, cast } = movieDetails || {};
+
 
   useEffect(() => {
     console.log('dispatching fetchMovieDetails')
     dispatch(fetchMovieDetails(movieId));
   }, [dispatch, movieId]);
-  
+
+  const director = crew?.find(member => member.department === 'Directing' && member.job === 'Director')?.name;
+  const actorNames = cast?.slice(0, 5).map(member => member.name).join(', ');
+  const videoUrl = videos?.results?.[0]?.key ? `https://www.youtube.com/watch?v=${videos.results[0].key}` : null;
 
   return (
     <Container>
@@ -25,19 +28,19 @@ export default function InfoMovie() {
       </div>
       <div className="infoMovie">
         <div className="poster">
-          <img src={posterUrl} alt={title} />
+          <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt={title} />
         </div>
         <div className="descript">
           <h2>{title}</h2>
           <p>Đạo diễn: {director}</p>
-          <p>Diễn viên: {actors}</p>
+          <p>Diễn viên: {actorNames}</p>
         </div>
       </div>
-      <div className="trailer">
-        <video controls>
-          <source src={videoUrl} type="video/mp4" />
-        </video>
-      </div>
+      {videoUrl && (
+        <div className="trailer">
+          <iframe width="560" height="315" src={videoUrl} title="Trailer" allowFullScreen />
+        </div>
+      )}
     </Container>
   );
 }

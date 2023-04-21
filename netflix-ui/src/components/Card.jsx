@@ -60,7 +60,7 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
                 <RiThumbDownFill title="Dislike"/>
               </div>
               <div className="info">
-                <BiChevronDown title="More Info" />
+                <BiChevronDown title="More Info"/>
               </div>
             </div>
             <div className="genres flex">
